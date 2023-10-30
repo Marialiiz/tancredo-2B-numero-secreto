@@ -5,8 +5,18 @@ window.SpeechRecognition=window.SpeechRecognition || webkitSpeechRecognition;
 const recognition= new SpeechRecognition ();
 recognition.lang='pt-Br'
 recognition.start()
+
 recognition.addEventListener('result', onSpeak)
 
 function onSpeak (e){
-console.log(e.results[0][0].transcript)
+chute=e.results[0] [0].transcript
+exibeChuteNaTela(chute)
 }
+
+function exibeChuteNaTela(){
+elementoChute.innerHTML=`
+<div> você disse </div>
+<span class="box">$(chute)</span>
+`
+}
+recognition.addEventListener('end',()=>recognition.start())
